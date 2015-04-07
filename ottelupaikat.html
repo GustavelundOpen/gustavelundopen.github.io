@@ -33,6 +33,48 @@
 	}
 		
 	</style>
+	<script>
+			function intersects(x, y, cx, cy, r) {
+				var dx = x-cx
+				var dy = y-cy
+				return dx*dx+dy*dy <= r*r
+			}
+			
+
+			function getPosition(evt) {
+				var x;
+				var y;
+				var canvas = document.getElementById("myCanvas");
+				var rect = canvas.getBoundingClientRect();
+				if(evt.targetTouches != null) {
+					evt.preventDefault();
+					x = evt.targetTouches[0].pageX - rect.left;
+					y = evt.targetTouches[0].pageY - rect.top;
+				} else {
+					x = evt.clientX - rect.left;
+					y = evt.clientY - rect.top;
+				}
+				var relax = 470/750 * rect.width;
+				var relay = 100/900 * rect.height;
+				console.log("RELAT " + relax + " " + relay);
+
+				if(intersects(x, y, relax, relay, 40)) {
+					$('#leavecontact').modal('show');
+					//alert("Gustis x:" + x + " y:" + y);
+				}
+			}
+
+			window.addEventListener('load', function() {
+			$("#myCanvas").mouseover(function() {
+				$(this).css( 'cursor', 'url(images/touch_icon.png), auto' );
+			});
+					document.getElementsByTagName("BODY")[0].onresize=function(){
+						var canvas = document.getElementById("myCanvas");
+						console.log("size" + JSON.stringify(canvas.getBoundingClientRect()));
+					};
+			}, false);
+
+	</script>
   </head>
 
   <body>
@@ -49,7 +91,7 @@
       </div>
 -->
 	  <div class="row">
-		<div class="col-sm-4">
+		<div id="dive" class="col-sm-4">
 			<!--<img src="images/2015-logo-small.jpg"/>-->
 			<img src="images/gustislogo-small.jpg"/>
 		</div>
@@ -64,14 +106,14 @@
 	  <div class="row">        
 		<div class="col-sm-12">
 			<ul class="nav nav-pills">
-			  <li><a href="i2.html"><span class="glyphicon glyphicon-home"></span></a></li>
-			  <li><a href="#">TULOKSET</a></li>
-			  <li><a href="#">AIKATAULU</a></li>
+			  <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+			  <li><a href="aikataulu.html">AIKATAULU</a></li>
 			  <li class="active"><a href="#">OTTELUPAIKAT</a></li>
 			  <!--<li><a href="#">VIDEOT</a></li>-->
-			  <li><a href="#">OHEISTOIMINTA</a></li>
-			  <li><a href="#">RUOKAILU</a></li>
-			  <li><a href="#">MAJOITUS</a></li>
+			  <li><a href="oheistoiminta.html">OHEISTOIMINTA</a></li>
+			  <li><a href="ruokailu.html">RUOKAILU</a></li>
+			  <li><a href="majoitus.html">MAJOITUS</a></li>
+			  <li><a href="yhteystiedot.html">YHTEYSTIEDOT</a></li>
 			</ul>
 		</div>
 	  </div>
@@ -79,79 +121,57 @@
 		<div class="col-sm-8">
 		  <canvas id="myCanvas" width="750" height="900"></canvas>
 			<script>
-			function intersects(x, y, cx, cy, r) {
-				var dx = x-cx
-				var dy = y-cy
-				return dx*dx+dy*dy <= r*r
-			}
-			function getPosition(evt)
-				{
-					var x;
-					var y;
-				var canvas = document.getElementById("myCanvas");
-				var rect = canvas.getBoundingClientRect();
-				if(evt.targetTouches != null) {
-					evt.preventDefault();
-					x = evt.targetTouches[0].pageX - rect.left;
-					y = evt.targetTouches[0].pageY - rect.top;
-				} else {
-					  x = evt.clientX - rect.left;
-					  y = evt.clientY - rect.top;
-				  }
-/*					  x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft; 
-					  y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop; 
 
-					  if (e.pageX || e.pageY) { 
-					  x = e.pageX;
-					  y = e.pageY;
-					}
-					else { 
-					} 
-					x -= gCanvasElement.offsetLeft;
-					y -= gCanvasElement.offsetTop;
-*/
-/*
-				  var x = event.x;
-				  var y = event.y;
-
-				  var canvas = document.getElementById("myCanvas");
-
-				  x -= canvas.offsetLeft;
-				  y -= canvas.offsetTop;
-*/
-				  if(intersects(x, y, 470, 100, 40)) {
-				   alert("Gustis x:" + x + " y:" + y);
-				  }
-				}
-
-				var canvas = document.getElementById('myCanvas');
-			  var ctx = canvas.getContext('2d');
-			  var imageObj = new Image();
-			  canvas.addEventListener("mousedown", getPosition, false);
-			  canvas.addEventListener("touchstart", getPosition, false);
-			  imageObj.onload = function() {
+				// 750 x 900
+			var canvas = document.getElementById('myCanvas');
+			var ctx = canvas.getContext('2d');
+			var requestAnimationFrame = window.requestAnimationFrame || 
+										window.mozRequestAnimationFrame || 
+										window.webkitRequestAnimationFrame || 
+										window.msRequestAnimationFrame;
+							
+			var imageObj = new Image();
+			canvas.addEventListener("mousedown", getPosition, false);
+			canvas.addEventListener("touchstart", getPosition, false);
+			
+			imageObj.onload = function() {
 				ctx.drawImage(imageObj, 10, 10);
-				  // G
-				  ctx.beginPath();
-				  ctx.strokeStyle = '#ff0000';
-				  ctx.lineWidth = 5;
-				  ctx.arc(470, 100, 40, 0, 2 * Math.PI);
-				  ctx.stroke();
-				  // KU
-				  ctx.beginPath();
-				  ctx.arc(410, 410, 30, 0, 2 * Math.PI);
-				  ctx.stroke();
-				  // TK
-				  ctx.beginPath();
-				  ctx.arc(310, 650, 30, 0, 2 * Math.PI);
-				  ctx.stroke();
-				  // SK
-				  ctx.beginPath();
-				  ctx.arc(250, 860, 30, 0, 2 * Math.PI);
-				  ctx.stroke();
-			  };
-			  imageObj.src = 'images/pelipaikat-over.png';
+				drawCircle();
+			};
+			imageObj.src = 'images/pelipaikat-over.png';
 
+			var angle = 0;
+			
+			function drawCircle() {
+				ctx.clearRect(0, 0, 750, 900);
+				ctx.drawImage(imageObj, 10, 10);
+				var radiusi = 5 + 40 * Math.abs(Math.cos(angle));
+				if(radiusi < 35) { radiusi = 35; }
+				var radiusp = 5 + 30 * Math.abs(Math.cos(angle));
+				if(radiusp < 25) { radiusp = 25; }
+				// G
+				ctx.beginPath();
+				ctx.strokeStyle = '#ff0000';
+				ctx.lineWidth = 5;
+				ctx.arc(470, 100, radiusi, 0, 2 * Math.PI);
+				ctx.stroke();
+				// KU
+				ctx.beginPath();
+				ctx.arc(410, 410, radiusp, 0, 2 * Math.PI);
+				ctx.stroke();
+				// TK
+				ctx.beginPath();
+				ctx.arc(310, 650, radiusp, 0, 2 * Math.PI);
+				ctx.stroke();
+				// SK
+				ctx.beginPath();
+				ctx.arc(250, 860, radiusp, 0, 2 * Math.PI);
+				ctx.stroke();
+				
+				angle += Math.PI / 128;
+				
+				requestAnimationFrame(drawCircle);
+			}
 			</script>
 		  <!--<img width="750px" src="images/pelipaikat-over.png"/>-->
 		</div>
@@ -164,7 +184,11 @@
 				<img class="kumppanit" src="//placehold.it/200x70"/>
 				<div class="over">[Some other]</div>
 				<img class="kumppanit" src="//placehold.it/200x70"/>
-			<a class="twitter-timeline" height="600" width="319" data-tweet-limit="5"  data-aria-polite="assertive". data-chrome="noscrollbar noheader nofooter transparent" href="https://twitter.com/tennisseuratts" data-widget-id="521346843486076928"></a>
+				<div class="over"><br/></div>
+				<p><button type="button" class="btn btn-primary">Gustavelundin kenttä</button></p>
+				<p><button type="button" class="btn btn-primary">Keski-Uudenmaan kenttä</button></p>
+				<p><button type="button" class="btn btn-primary">Tenniskeskuksen kentät</button></p>
+				<p><button type="button" class="btn btn-primary">Sahankulman kentät</button></p>
 	  </div>
 	  </div>
       <div class="row marketing">
@@ -187,22 +211,26 @@
       </div>
 
     </div> <!-- /container -->
-	<div class="modal fade" id="leavecontact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="leavecontact" tabindex="-1" role="dialog" aria-labelledby="gLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 		<div class="modal-content">
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			<h4 class="modal-title">Ennakkoilmoittautuminen</h4>
+			<h4 class="modal-title">Gustavelund</h4>
 		  </div>
 		  <div class="modal-body">
-			<p>Jätä sähköpostiosoitteesi niin lähetämme sinulle tiedotteet ja tiedon milloin voi ilmoittautua.</p>
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="email">
+		    <div class="row">
+				<div class="col-sm-4"><img src="http://placehold.it/170x170"/></div>
+				<div class="col-sm-8">
+				<p>Kisojen pääpaikka.</p>
+				<p>ilmoittautuminen, ruokailu ja majoitus löytyvät täältä.</p>
+				<p>MA ja MB3 pelataan täällä.</p>
+				</div>
 			</div>
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
-			<button type="button" class="btn btn-primary">L&auml;het&auml;</button>
+		    <div class="row">
+				<div class="col-sm-12"><p><a href="https://www.google.fi/maps/place/Gustavelund+Oy/@60.413025,25.038163,17z/data=!4m2!3m1!1s0x0000000000000000:0xf29d5da52a821a7e?hl=en">Karttalinkki</a></p></div>
+			</div>
+			
 		  </div>
 		</div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
