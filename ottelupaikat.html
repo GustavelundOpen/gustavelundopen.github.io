@@ -54,13 +54,39 @@
 					x = evt.clientX - rect.left;
 					y = evt.clientY - rect.top;
 				}
-				var relax = 470/750 * rect.width;
-				var relay = 100/900 * rect.height;
-				console.log("RELAT " + relax + " " + relay);
+				var relaxg = 470/750 * rect.width;
+				var relayg = 100/900 * rect.height;
+				var relaxk = 410/750 * rect.width;
+				var relayk = 410/900 * rect.height;
+				var relaxt = 310/750 * rect.width;
+				var relayt = 650/900 * rect.height;
+				var relaxs = 250/750 * rect.width;
+				var relays = 860/900 * rect.height;
+				//console.log("RELAT " + relaxs + " " + relay);
 
-				if(intersects(x, y, relax, relay, 40)) {
-					$('#leavecontact').modal('show');
-					//alert("Gustis x:" + x + " y:" + y);
+				if(intersects(x, y, relaxg, relayg, 40)) {
+					$('#keskari').modal('hide');
+					$('#tenniskeskus').modal('hide');
+					$('#sahankulma').modal('hide');
+					$('#gustis').modal('show');
+				}
+				if(intersects(x, y, relaxk, relayk, 40)) {
+					$('#keskari').modal('show');
+					$('#tenniskeskus').modal('hide');
+					$('#sahankulma').modal('hide');
+					$('#gustis').modal('hide');
+				}
+				if(intersects(x, y, relaxt, relayt, 40)) {
+					$('#keskari').modal('hide');
+					$('#tenniskeskus').modal('show');
+					$('#sahankulma').modal('hide');
+					$('#gustis').modal('hide');
+				}
+				if(intersects(x, y, relaxs, relays, 40)) {
+					$('#keskari').modal('hide');
+					$('#tenniskeskus').modal('hide');
+					$('#sahankulma').modal('show');
+					$('#gustis').modal('hide');
 				}
 			}
 
@@ -106,7 +132,7 @@
 	  <div class="row">        
 		<div class="col-sm-12">
 			<ul class="nav nav-pills">
-			  <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+			  <li><a href="index.html"><span class="glyphicon glyphicon-home"></span></a></li>
 			  <li><a href="aikataulu.html">AIKATAULU</a></li>
 			  <li class="active"><a href="#">OTTELUPAIKAT</a></li>
 			  <!--<li><a href="#">VIDEOT</a></li>-->
@@ -185,10 +211,11 @@
 				<div class="over">[Some other]</div>
 				<img class="kumppanit" src="//placehold.it/200x70"/>
 				<div class="over"><br/></div>
-				<p><button type="button" class="btn btn-primary">Gustavelundin kenttä</button></p>
-				<p><button type="button" class="btn btn-primary">Keski-Uudenmaan kenttä</button></p>
-				<p><button type="button" class="btn btn-primary">Tenniskeskuksen kentät</button></p>
-				<p><button type="button" class="btn btn-primary">Sahankulman kentät</button></p>
+				<p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#gustis">Gustavelundin kenttä</button></p>
+				<p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#keskari">Keski-Uudenmaan kenttä</button></p>
+				<p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tenniskeskus">Tenniskeskuksen kentät</button></p>
+				<p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sahankulma">Sahankulman kentät</button></p>
+				<p>Kaikki kentät ovat pyöräilymatkan päässä toisistaan. Gustavelund - Keski-Uusimaa matka on 1,8 km eli noin 6 - 7 minuuttia pyörällä ja autolla 3 minuuttia. Sahankulmaan on Gustavelundista 3,6 km ja koko matkan pääsee pyörätietä alikulkujen kautta. Polkupyöriä saa vuokralle Gustavelundista.</p>
 	  </div>
 	  </div>
       <div class="row marketing">
@@ -211,12 +238,84 @@
       </div>
 
     </div> <!-- /container -->
-	<div class="modal fade" id="leavecontact" tabindex="-1" role="dialog" aria-labelledby="gLabel" aria-hidden="true">
+	<div class="modal fade" id="gustis" tabindex="-1" role="dialog" aria-labelledby="gLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 		<div class="modal-content">
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 			<h4 class="modal-title">Gustavelund</h4>
+		  </div>
+		  <div class="modal-body">
+		    <div class="row">
+				<div class="col-sm-4"><img src="http://placehold.it/170x170"/></div>
+				<div class="col-sm-8">
+				<p>Kisojen pääpaikka.</p>
+				<p>ilmoittautuminen, ruokailu ja majoitus löytyvät täältä.</p>
+				<p>MA ja MB3 pelataan täällä.</p>
+				</div>
+			</div>
+		    <div class="row">
+				<div class="col-sm-12"><p><a href="https://www.google.fi/maps/place/Gustavelund+Oy/@60.413025,25.038163,17z/data=!4m2!3m1!1s0x0000000000000000:0xf29d5da52a821a7e?hl=en">Karttalinkki</a></p></div>
+			</div>
+			
+		  </div>
+		</div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<div class="modal fade" id="keskari" tabindex="-1" role="dialog" aria-labelledby="gLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title">Keski-Uusimaan kenttä</h4>
+		  </div>
+		  <div class="modal-body">
+		    <div class="row">
+				<div class="col-sm-4"><img src="http://placehold.it/170x170"/></div>
+				<div class="col-sm-8">
+				<p>Kisojen pääpaikka.</p>
+				<p>ilmoittautuminen, ruokailu ja majoitus löytyvät täältä.</p>
+				<p>MA ja MB3 pelataan täällä.</p>
+				</div>
+			</div>
+		    <div class="row">
+				<div class="col-sm-12"><p><a href="https://www.google.fi/maps/place/Gustavelund+Oy/@60.413025,25.038163,17z/data=!4m2!3m1!1s0x0000000000000000:0xf29d5da52a821a7e?hl=en">Karttalinkki</a></p></div>
+			</div>
+			
+		  </div>
+		</div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<div class="modal fade" id="tenniskeskus" tabindex="-1" role="dialog" aria-labelledby="gLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title">Tenniskeskus</h4>
+		  </div>
+		  <div class="modal-body">
+		    <div class="row">
+				<div class="col-sm-4"><img src="http://placehold.it/170x170"/></div>
+				<div class="col-sm-8">
+				<p>Kisojen pääpaikka.</p>
+				<p>ilmoittautuminen, ruokailu ja majoitus löytyvät täältä.</p>
+				<p>MA ja MB3 pelataan täällä.</p>
+				</div>
+			</div>
+		    <div class="row">
+				<div class="col-sm-12"><p><a href="https://www.google.fi/maps/place/Gustavelund+Oy/@60.413025,25.038163,17z/data=!4m2!3m1!1s0x0000000000000000:0xf29d5da52a821a7e?hl=en">Karttalinkki</a></p></div>
+			</div>
+			
+		  </div>
+		</div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<div class="modal fade" id="sahankulma" tabindex="-1" role="dialog" aria-labelledby="gLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title">Sahankulman kentät</h4>
 		  </div>
 		  <div class="modal-body">
 		    <div class="row">
