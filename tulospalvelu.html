@@ -24,12 +24,29 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+
 	<style type="text/css">
 	.autosized-media {
 		border-radius: 5px;
 	}
 		
 	</style>
+	<script>
+	var baseurl = "//go2015-";
+	var endurl = ".firebaseapp.com/frameimport.html";
+	$( document ).ready(function() {
+		$('.tulosframe').load(function() {});
+		$(".sarjat a").on("click", function(){
+		   $(".sarjat").find(".active").removeClass("active");
+		   $(this).parent().addClass("active");
+		   $(".tulosframe").attr('src', baseurl + $(this).text().toLowerCase() + endurl);
+		});
+	});
+	</script>
   </head>
 
   <body>
@@ -50,7 +67,7 @@
 			<ul class="nav nav-pills">
 			  <li><a href="index.html"><span class="glyphicon glyphicon-home"></span></a></li>
 			  <li><a href="aikataulu.html">AIKATAULU</a></li>
-			  <li><a href="#">OTTELUPAIKAT</a></li>
+			  <li><a href="ottelupaikat.html">OTTELUPAIKAT</a></li>
 			  <li class="active"><a href="#">TULOKSET</a></li>
 			  <li><a href="oheistoiminta.html">OHEISTOIMINTA</a></li>
 			  <li><a href="ruokailu.html">RUOKAILU</a></li>
@@ -60,11 +77,24 @@
 		</div>
 	  </div>
 	  <div class="row">        
-		<div class="col-sm-12">
-			<iframe width="100%" height="800px" src="https://boiling-torch-3055.firebaseapp.com" style="border:none"></iframe>
+		<div class="col-sm-8">
+		<br/>
+		<ul class="nav nav-tabs nav-justified sarjat">
+  <li role="presentation" class="active"><a href="#ma3">MA3</a></li>
+  <li role="presentation"><a href="#mb2">MB2</a></li>
+  <li role="presentation"><a href="#mc">MC</a></li>
+  <li role="presentation"><a href="#nc">NC</a></li>
+  <li role="presentation"><a href="#p14">P14</a></li>
+  <li role="presentation"><a href="#p12">P12</a></li>
+  <li role="presentation"><a href="#p10">P10</a></li>
+  <li role="presentation"><a href="#minitennis">PMinitennis</a></li>
+</ul>
+
+			<iframe class="tulosframe" width="100%" height="800px" src="https://go2015-ma3.firebaseapp.com/frameimport.html" style="border:none"></iframe>
 		</div>
-<!--  	  <div class="col-sm-4">
-	  </div> -->
+		<div class="col-sm-4">
+			<a class="twitter-timeline" height="600" width="319" data-tweet-limit="5"  data-aria-polite="assertive". data-chrome="noscrollbar noheader nofooter transparent" href="//twitter.com/tennisseuratts" data-widget-id="521346843486076928"></a>
+		</div>
 	  </div>
       <div class="row marketing">
         <div class="col-sm-12">
@@ -175,9 +205,6 @@
 	</div><!-- /.modal -->
 	
 	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.countdown.min.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
