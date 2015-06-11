@@ -36,10 +36,18 @@
 		
 	</style>
 	<script>
+	
+	function reloadinsta(){
+		console.log("reload");
+		$('.insta').attr("src", $('.insta').attr("src"));
+		setTimeout(reloadinsta, 300000);
+	}
+	
 	var baseurl = "//go2015-";
 	var endurl = ".firebaseapp.com/frameimport.html";
 	$( document ).ready(function() {
 		$('.tulosframe').load(function() {});
+		setTimeout(reloadinsta, 60000);
 		$(".sarjat a").on("click", function(){
 		   $(".sarjat").find(".active").removeClass("active");
 		   $(this).parent().addClass("active");
@@ -93,6 +101,7 @@
 			<iframe class="tulosframe" width="100%" height="800px" src="https://go2015-ma3.firebaseapp.com/frameimport.html" style="border:none"></iframe>
 		</div>
 		<div class="col-sm-4">
+			<div style='position: relative; padding-bottom: 101%; height: 0; overflow: hidden;'><iframe class="insta" id='iframe' src='//flickrit.com/slideshowholderinstagram.php?height=100&size=big&tags=tgo15&click=true&caption=true&counter=true&credit=1&trans=1&theme=1&thumbnails=0&transition=1&layoutType=responsive&sort=0' scrolling='no' frameborder='0'style='width:100%; height:100%; position: absolute; top:0; left:0;' ></iframe></div>			
 			<a class="twitter-timeline" height="600" width="319" data-tweet-limit="5"  data-aria-polite="assertive". data-chrome="noscrollbar noheader nofooter transparent" href="//twitter.com/tennisseuratts" data-widget-id="521346843486076928"></a>
 		</div>
 	  </div>
@@ -109,103 +118,6 @@
 	  </div>
 
     </div> <!-- /container -->
-	<div class="modal fade" id="gustis" tabindex="-1" role="dialog" aria-labelledby="gLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			<h4 class="modal-title">Gustavelund</h4>
-		  </div>
-		  <div class="modal-body">
-		    <div class="row">
-				<div class="col-sm-4"><img src="http://placehold.it/170x170"/></div>
-				<div class="col-sm-8">
-				<p>Kisojen pääpaikka.</p>
-				<p>ilmoittautuminen, ruokailu ja majoitus löytyvät täältä.</p>
-				</div>
-			</div>
-		    <div class="row">
-				<div class="col-sm-12"><p><a href="https://www.google.fi/maps/place/Gustavelund+Oy/@60.413025,25.038163,17z/data=!4m2!3m1!1s0x0000000000000000:0xf29d5da52a821a7e?hl=en">Karttalinkki</a></p></div>
-			</div>
-			
-		  </div>
-		</div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-	<div class="modal fade" id="keskari" tabindex="-1" role="dialog" aria-labelledby="gLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			<h4 class="modal-title">Keski-Uusimaan kenttä</h4>
-		  </div>
-		  <div class="modal-body">
-		    <div class="row">
-				<div class="col-sm-4"><img src="http://placehold.it/170x170"/></div>
-				<div class="col-sm-8">
-				<p>Yksi massakenttä.</p>
-				<p>Autolla pääsee ihan viereen.</p>
-				</div>
-			</div>
-		    <div class="row">
-				<div class="col-sm-12"><p><a href="https://www.google.fi/maps/place/Klaavolantie,+04300+Tuusula/@60.4015938,25.0341243,17z/data=!3m1!4b1!4m2!3m1!1s0x468dff121654d223:0xadc5723054e3e9e3">Karttalinkki</a></p></div>
-			</div>
-			
-		  </div>
-		</div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-	<div class="modal fade" id="tenniskeskus" tabindex="-1" role="dialog" aria-labelledby="gLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			<h4 class="modal-title">Tenniskeskus</h4>
-		  </div>
-		  <div class="modal-body">
-		    <div class="row">
-				<div class="col-sm-4"><img src="images/tenniskeskus-1.jpg"/></div>
-				<div class="col-sm-8">
-				<p>Kaksi massakenttää.</p>
-				<p>Löytyvät tennishallin takaa. Pyörällä pääsee nopeasti oikoreittiä paikalle. Auton voi jättää tennishallin parkkipaikalle ja kävellä hallin taakse.</p>
-				</div>
-			</div>
-		    <div class="row">
-				<div class="col-sm-12"><p><a href="https://www.google.fi/maps/place/Kilpailukuja+4,+04300+Tuusula/@60.3928264,25.027864,17z/data=!3m1!4b1!4m2!3m1!1s0x468dff15832c1f87:0x4ebbc5ac99a83cbd">Karttalinkki</a></p></div>
-			</div>
-			
-		  </div>
-		</div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-	<div class="modal fade" id="sahankulma" tabindex="-1" role="dialog" aria-labelledby="gLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			<h4 class="modal-title">Sahankulman kentät</h4>
-		  </div>
-		  <div class="modal-body">
-		    <div class="row">
-				<div class="col-sm-4"><img src="images/sahankulma-1.jpg"></div>
-				<div class="col-sm-8">
-				<p>3 kappaletta hiekkatekonurmia.</p>
-				<p>Kaikki juniorisarjat pelataan täällä.</p>
-				<p>Paikalla buffet, aurinkosuojat, WC.</p>
-				<p>Vieressä hiekkakenttä jossa voi pelata jalkapalloa, mölkkyä, petankkia. Frisbeegolf rata 500m. Välineitä saa järjestäjiltä lainaan.</p>
-				</div>
-			</div>
-		    <div class="row">
-				<div class="col-sm-12"><p><a href="https://www.google.fi/maps/place/Moukarinkuja+13,+04300+Tuusula/@60.3848465,25.0239392,17z/data=!3m1!4b1!4m2!3m1!1s0x468dff389a03adb1:0x14a06f440d073ad3">Karttalinkki</a></p></div>
-			</div>
-			
-		  </div>
-		</div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-	
-	
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 	<script>window.twttr = (function (d, s, id) {
